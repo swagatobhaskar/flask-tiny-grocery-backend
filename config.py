@@ -14,13 +14,13 @@ class Config:
 class DevConfig(Config):
     DEBUG = True
     TESTING = False
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + path.join(BASEDIR, 'dev_meds_inventory.db')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + path.join(BASEDIR, 'dev_grocery_inventory.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class TestConfig(Config):
     DEBUG = True
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + path.join(BASEDIR, 'test_meds_inventory.db')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + path.join(BASEDIR, 'test_grocery_inventory.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class ProdConfig(Config):

@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from datetime import datetime
 
 from .extensions import db
-from .models import Product, Batch
+from .models import Product, Inventory, Category
 
 product_bp = Blueprint(name='product', import_name='__name__')
 
