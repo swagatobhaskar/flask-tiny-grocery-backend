@@ -75,7 +75,7 @@ class Inventory(db.Model):
     reorder_qty = db.Column(db.Float, nullable=False)
     shelf_no = db.Column(db.Integer, nullable=False)
     exp_date = db.Column(db.DateTime(timezone=True), nullable=True)
-    available = db.Column(db.Boolean, default=False)
+    is_available = db.Column(db.Boolean, default=False)
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now(), nullable=True)
     # Many-to-One relation with Product, one product can have multiple inventory records, absed on batch, warehouse, etc
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False) # DELETE logic?
@@ -88,8 +88,22 @@ class Inventory(db.Model):
         return {
             "id": self.id,
             "product_id": self.product_id,
-            "max_qty": self.max_qty,
-            "available_qty": self.available_qty,
             "available": self.available,
             "shelf_no": self.shelf_no
         }
+    
+    def get_detail_view(self):
+        return {
+            "id": self.id,
+            "product_id": self.product_id,
+            "purchase_price": self.purchase_price,
+            "max_qty": self.max_qty,
+            "available_qty": self.available_qty,
+            "reorder_level": self.reorder_level,
+            "reorder_qty": self.reorder_qty,
+            "shelf_no": self.shelf_no,
+            "exp_date": self.exp_date,
+            "is_available": self.is_available,
+            "updated_at": self.updated_at
+        }
+    

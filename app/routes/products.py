@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify
 from datetime import datetime
 
-from .extensions import db
-from .models import Product, Inventory, Category
+from ..extensions import db
+from ..models import Product, Inventory, Category
 
 product_bp = Blueprint(name='product', import_name='__name__')
 
@@ -22,7 +22,7 @@ def get_product_detail(id):
             return jsonify({'error': f"Product with id {id} not found"}), 404
     return jsonify(selected_product.detail_view()), 200
 
-@product_bp.route('/new', methods=["POST"])
+@product_bp.route('/add-new', methods=["POST"])
 def create_product():
     if request.method == "POST":
         data = request.get_json()

@@ -2,9 +2,10 @@ from flask import Flask
 from flask_migrate import Migrate
 from os import getenv
 
-
 from config import DevConfig, ProdConfig
-from .routes import product_bp
+from .routes.products import product_bp
+from .routes.categories import category_bp
+from .routes.inventory import inventory_bp
 from .extensions import db
 
 migrate = Migrate()
@@ -20,5 +21,7 @@ def create_app():
     migrate.init_app(app, db)
 
     app.register_blueprint(product_bp, url_prefix='/')
+    app.register_blueprint(category_bp, url_prefix='/category')
+    app.register_blueprint(inventory_bp, url_prefix='/inventory')
 
     return app
