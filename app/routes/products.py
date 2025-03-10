@@ -30,10 +30,7 @@ def create_product():
         required_category = Category.query.get(data['category_id'])
         if not required_category:
             return jsonify({'error': f"category with id {id} not found"}), 404
-        required_category = Category.query.get(data['category_id'])
-        if not required_category:
-            return jsonify({'error': f"category with id {id} not found"}), 404
-        
+                
         new_product = Product(
             name = data['name'],
             retail_price = data['retail_price'],
