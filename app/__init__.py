@@ -20,7 +20,7 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    app.register_blueprint(product_bp, url_prefix='/')
+    app.register_blueprint(product_bp, url_prefix='/product')
     app.register_blueprint(category_bp, url_prefix='/category')
     app.register_blueprint(inventory_bp, url_prefix='/inventory')
 

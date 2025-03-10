@@ -53,8 +53,7 @@ class Product(db.Model):
             'category': {
                 'id': self.category_id,
                 'name': self.category.name
-            },
-            # 'inventories': self.inventories
+            }
         }
         
 class Category(db.Model):
