@@ -26,6 +26,9 @@ def add_new_category():
     if request.method == "POST":
         data = request.get_json()
 
+        if not data:
+            return jsonify({"error": "Invalid data!"}), 400
+
         new_category = Category(
             name = data['name'],
             description = data['description']
