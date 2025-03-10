@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from datetime import datetime
 
 from ..extensions import db
-from ..models import Product, Inventory, Category
+from ..models import Product, Category
 
 product_bp = Blueprint(name='product', import_name='__name__')
 
@@ -27,12 +27,12 @@ def create_product():
     if request.method == "POST":
         data = request.get_json()
 
-        required_batch = Batch.query.get(data['batch_id'])
-        if not required_batch:
-            return jsonify({'error': f"Batch with id {id} not found"}), 404
-        required_batch = Batch.query.get(data['batch_id'])
-        if not required_batch:
-            return jsonify({'error': f"Batch with id {id} not found"}), 404
+        required_category = Category.query.get(data['category_id'])
+        if not required_category:
+            return jsonify({'error': f"category with id {id} not found"}), 404
+        required_category = Category.query.get(data['category_id'])
+        if not required_category:
+            return jsonify({'error': f"category with id {id} not found"}), 404
         
         new_product = Product(
             name = data['name'],
@@ -42,7 +42,7 @@ def create_product():
             weight = data['weight'],
             unit_of_measure = data['unit_of_measure'],
             supplier = data['supplier'],
-            batch = required_batch
+            category = required_category
         )
         db.session.add(new_product)
         db.session.commit()
@@ -73,8 +73,8 @@ def edit_category(id):
                 fetched_product.mfg_date = datetime.fromisoformat(data['mfg_date'])
             except ValueError:
                 return jsonify({"error": "Invalid manufacturing date format. Use ISO 8601 format (YYYY-MM-DDTHH:MM:SS)"}), 400
-        if 'batch_no' in data:
-            fetched_product.batch_no = data['batch_no']
+        if 'category_no' in data:
+            fetched_product.category_no = data['category_no']
         if 'exp_date' in data:
             try:
                 fetched_product.exp_date = datetime.fromisoformat(data['exp_date'])
@@ -91,12 +91,7 @@ def edit_category(id):
             if not category_to_assign:
                 return jsonify({'error': 'Category not found'}), 404
             fetched_product.category = category_to_assign
-        if 'subcategory_id' in data:
-            subcategory_to_assign = Subcategory.query.get(data['subcategory_id'])
-            if not subcategory_to_assign:
-                return jsonify({'error': 'Subcategory not found'}), 404
-            fetched_product.subcategory = subcategory_to_assign
-
+       
         db.session.commit()
         return jsonify({'message': 'Product updated successfully!'}), 200
 

@@ -79,7 +79,7 @@ class Inventory(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now(), nullable=True)
     # Many-to-One relation with Product, one product can have multiple inventory records, absed on batch, warehouse, etc
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False) # DELETE logic?
-    products = db.relationship("Product", back_populates="inventories")
+    product = db.relationship("Product", back_populates="inventories")
 
     def __repr__(self):
         return f"<Inventory(id={self.id})>"
