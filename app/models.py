@@ -64,6 +64,14 @@ class Category(db.Model):
 
     def __repr__(self):
         return f"<Category(id={self.id}, name={self.name})>"
+    
+    def get_list_view(self):
+        return {"id": self.id, "name" : self.name}
+    
+    def get_detail_view(self):
+        return {
+            "id": self.id, "name": self.name, "description": self.description
+        }
 
 class Inventory(db.Model):
     id = db.Column(db.Integer, primary_key=True)

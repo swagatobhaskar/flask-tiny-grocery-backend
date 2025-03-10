@@ -38,3 +38,27 @@ JSON new product:
 }
 </code>
 </p>
+
+<p>
+Fruits – bananas, apples, grapes, oranges, strawberries, avocados, peaches, pineapple, pears, etc. </br>
+Vegetables – potatoes, tomatoes, onions, carrots, lettuce, broccoli, peppers, celery, garlic, cucumbers, etc.</br>
+Canned Goods – olives, soup, tuna, veggies, fruit, etc.</br>
+Frozen Foods – fish, ice cream, pizza, potatoes, ready meals, etc.</br>
+Meat – chicken, beef, pork, sausage, etc.</br>
+Fish and shellfish – shrimp, crab, clams, tuna, salmon, tilapia, etc.</br>
+Deli – chees, ham, turkey, salami, etc.</br>
+Condiments & Spices – salt, sugar, pepper, oregano, cinnamon, ketchup, mayonnaise, mustard , etc.</br>
+Sauces & Oils – olive oil, tomato sauce, hot sauce, soy sauce, etc.</br>
+Snacks – chips, crackers, pretzels, popcorn, peanuts, nuts, candy, etc.</br>
+Bread & Bakery – whole wheat, white, italian, sandwich, tortillas, pies, muffins, bagels, cookies, etc.</br>
+Beverages – water, coffe, milk, juice, soda, tea, beer, wine, etc.</br>
+Pasta/Rice – spaghetti, macaroni, noodles, white rice, etc.</br>
+Cereal – oats, rice, wheat, granola, etc.</br>
+Baking – flour, baking powder, butter, milk, eggs, etc.</br>
+Personal Care – shampoo, conditioner, soap, deodorant, toothpaste, dental floss, shaving cream, razor blades, etc.</br>
+Health Care – band-aid, hydrogen peroxide, alcohol, pain reliever, antacids, etc.</br>
+Paper & Wrap – toilet paper, paper towels, tissues, aluminum foil, zip bags, etc.</br>
+Household Supplies – detergent, softener, bleach, dish soap, air freshener, gloves, sponge, trash bags, batteries, etc.</br>
+Baby Items – baby food, diapers, wet wipes, moisturizing lotion, etc.</br>
+Other items – pet food, flowers, tobacco, etc.</br>
+</p>
