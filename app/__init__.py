@@ -4,7 +4,7 @@ from os import getenv
 
 from config import DevConfig, ProdConfig
 from .routes.products import product_bp
-from .routes.categories import category_bp
+from .routes.category import category_bp
 from .routes.inventory import inventory_bp
 from .extensions import db
 

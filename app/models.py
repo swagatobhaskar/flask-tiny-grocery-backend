@@ -95,14 +95,19 @@ class Inventory(db.Model):
         return {
             "id": self.id,
             "product_id": self.product_id,
-            "available": self.available,
+            "is_available": self.is_available,
             "shelf_no": self.shelf_no
         }
     
     def get_detail_view(self):
         return {
             "id": self.id,
-            "product_id": self.product_id,
+            "product": {
+                "id": self.product_id,
+                "name": self.product.name,
+                "retail_price": self.product.retail_price,
+                "batch_no": self.product.batch_no
+            },
             "purchase_price": self.purchase_price,
             "max_qty": self.max_qty,
             "available_qty": self.available_qty,
