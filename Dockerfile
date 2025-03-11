@@ -1,11 +1,29 @@
+# Use the official Python image from DockerHub
 FROM python:3.12-alpine
 
-WORKDIR /app
+# Set environment variables to run in production mode
+ENV ENV=production
+# Set environment variables to prevent Python from writing pyc files and
+ENV PYTHONUNBUFFERED=1
 
-COPY requirements.txt /app/
+# Set the working directory in the container
+WORKDIR /src
 
-RUN pip3 install --no-cache-dir -r requirements.txt
+# Update and upgrade the system packages (using apk for alpine-based image)
+RUN apk update && apk upgrade
 
-COPY . /app/
+# Copy the requirements.txt file into the container
+COPY requirements.txt .
 
-CMD ["python", "run.py"]
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application files into the container
+COPY . /src/
+
+# Expose the port the app will run on (default Flask port is 5000)
+# Flask default is 5000, but typically production apps use 80 or 8080
+EXPOSE 8000
+
+
+CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:8000", "wsgi:app"]

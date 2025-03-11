@@ -26,5 +26,6 @@ class TestConfig(Config):
 class ProdConfig(Config):
     DEBUG = False
     TESTING = False
-    SQLALCHEMY_DATABASE_URI = environ.get('PROD_DATABASE_URI')
+    # SQLALCHEMY_DATABASE_URI = environ.get('PROD_DATABASE_URI')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + path.join(BASEDIR, 'dev_grocery_inventory.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
