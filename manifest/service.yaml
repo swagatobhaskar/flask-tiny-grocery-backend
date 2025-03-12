@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-tiny-grocery-service
+spec:
+  selector:
+    app: flask-tiny-grocery-app   # Match the label used in the Deployment
+  ports:
+  - protocol: TCP
+    port: 8000  # The port on which the service is exposed externally (or within the cluster). This will be the port that clients connect to.
+    targetPort: 8000  # The port inside the container where the Flask app is actually running (as configured in the Docker container).
+    nodePort: 30000  # llows you to access the service from outside the cluster by using a port on any of your cluster's nodes.
+  type: NodePort
+
+# Kubernetes will assign a port in the 30000-32767 range (if you don’t manually specify nodePort).
+# You can access the service using the IP of any node in your cluster (e.g., http://<node-ip>:30000),
+# which will forward traffic to your Flask app running inside the container on port 8000.

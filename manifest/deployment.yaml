@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-tiny-grocery-deployment   # Name of the Deployment.
+spec:
+  selector:
+    matchLabels:
+      app: flask-tiny-grocery-app    # Label selector to find Pods managed by the Deployment.
+  template:
+    metadata:
+      labels:
+        app: flask-tiny-grocery-app   # Labels for the Pods created by this Deployment.
+    spec:
+      containers:
+      - name: flask-tiny-grocery
+        image: swport/flask-tiny-grocery:latest
+        env:  # Define environment variables.
+          - name: SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: flask-tiny-grocery-secrets
+                key: SECRET_KEY
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8000   # Ports exposed by the container.
+        # containerPort Specifies the port that Kubernetes will map to the container. This should match
+        # the port where your Flask application is running inside the container 
