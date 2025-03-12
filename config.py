@@ -9,23 +9,26 @@ class Config:
     DEBUG = False
     STATIC_FOLDER = 'static'
     TEMPLATES_FOLDER = 'templates'
-    SECRET_KEY = environ.get('SECRET_KEY')
-
+    
 class DevConfig(Config):
     DEBUG = True
     TESTING = False
+    SECRET_KEY = environ.get('SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + path.join(BASEDIR, 'dev_grocery_inventory.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class TestConfig(Config):
     DEBUG = True
     TESTING = True
+    SECRET_KEY = environ.get('SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + path.join(BASEDIR, 'test_grocery_inventory.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class ProdConfig(Config):
     DEBUG = False
     TESTING = False
+    # SECRET_KEY is set by kubernetes secret in production
+    SECRET_KEY = environ.get('SECRET_KEY')
     # SQLALCHEMY_DATABASE_URI = environ.get('PROD_DATABASE_URI')
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + path.join(BASEDIR, 'dev_grocery_inventory.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
