@@ -1,5 +1,5 @@
 # Use the official Python image from DockerHub
-FROM python:3.12-alpine
+FROM python:3.12-slim
 
 # Set environment variables to run in production mode
 ENV ENV=production
@@ -9,8 +9,8 @@ ENV PYTHONUNBUFFERED=1
 # Set the working directory in the container
 WORKDIR /src
 
-# Update and upgrade the system packages (using apk for alpine-based image)
-RUN apk update && apk upgrade
+# Update and upgrade the system packages (using apt for slim, which is debian based)
+RUN apt-get update && apt-get upgrade -y
 
 # Copy the requirements.txt file into the container
 COPY requirements.txt .
