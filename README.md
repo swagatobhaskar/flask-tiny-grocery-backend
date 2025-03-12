@@ -62,3 +62,17 @@ Household Supplies – detergent, softener, bleach, dish soap, air freshener, gl
 Baby Items – baby food, diapers, wet wipes, moisturizing lotion, etc.</br>
 Other items – pet food, flowers, tobacco, etc.</br>
 </p>
+
+<h4>
+In the <code>Dockerfile</code> The following command installs development tools (build-essential) and other libraries (libpq-dev, libssl-dev) that might be required by Python packages (like PostgreSQL or cryptography libraries).
+</h4>
+<code>
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \ </br>
+    build-essential \ </br>
+    libpq-dev \ </br>
+    libssl-dev \ </br>
+    && rm -rf /var/lib/apt/lists/*
+</code>
+</p>
+In the example above, <code>rm -rf /var/lib/apt/lists/*</code> is used to remove the package list after installation to reduce the size of the final image.
+</p>
