@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: flask-tiny-grocery-deployment   # Name of the Deployment.
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: flask-tiny-grocery-app    # Label selector to find Pods managed by the Deployment.
