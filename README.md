@@ -1,6 +1,6 @@
 # A Simple Grocery Inventory App (backend).
 
-> It's possible to run the app in development with `python run.py`. To simulate production, use `gunicorn -b 0.0.0.0:8000 wsgi:app`.
+It's possible to run the app in development with `python run.py`. To simulate production, use `gunicorn -b 0.0.0.0:8000 wsgi:app`.
 
 ## Build the Dockerfile to create image and run:
 1. Build the Docker image from the `Dockerfile` with: `docker build -t <dockerhub-username>/<project-name> .`
@@ -30,7 +30,7 @@ In the example above, `rm -rf /var/lib/apt/lists/*` is used to remove the packag
    apiserver: Running
    kubeconfig: Configured
 	```
-3. Set `alias='minikube kubectl --`
+3. Set `alias='minikube kubectl --'`
 4. Apply the YAML files with: </br>
   `kubectl apply -f manifest/deployment.yaml` </br>
   `kubectl apply -f manifest/service.yaml` </br>
