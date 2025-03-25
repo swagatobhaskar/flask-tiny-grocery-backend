@@ -4,6 +4,7 @@ FROM python:3.12-slim
 # Set environment variables to run in production mode
 ENV ENV=production
 # Set environment variables to prevent Python from writing pyc files and
+ENV PROD_DATABASE_URI=''
 ENV PYTHONUNBUFFERED=1
 
 # Set the working directory in the container
