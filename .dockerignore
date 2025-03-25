@@ -126,7 +126,6 @@ coverage.xml
 local_settings.py
 
 # Flask stuff:
-instance/
 .webassets-cache
 
 # Scrapy stuff:
@@ -163,3 +162,11 @@ celerybeat-schedule
 
 # mypy
 .mypy_cache/
+
+# Ignore the development sqlite database and instance/
+# DO NOT ignore migrations/ (needed for PostgreSQL in production)
+# but, i think, if dev was using sqlite and prod was using postgres,
+# migrations/ should be ignored
+*.db
+instance/
+migrations/
