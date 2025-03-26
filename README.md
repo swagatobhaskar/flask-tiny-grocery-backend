@@ -31,6 +31,9 @@ In the example above, `rm -rf /var/lib/apt/lists/*` is used to remove the packag
    postgres:17
    ```
       Since locally installed PostgreSQL also listens on PORT 5432, the container will use PORT 5433.
+      
+      For data persistence, here I'm using a Docker volume named `postgres_data`.
+
 2. Build the docker image: ```docker build -t dockerhub_user/flask-tiny-grocery .```
    
 3. Run the Flask app image: ```docker run -d --name flask-tiny-grocery \-e DATABASE_URI="postgresql://user:1234$PaSsWoRd@<UBUNTU/HOST_IP>:5433/tiny_grocery_db" -p 8000:8000 dockerhub_user/flask-tiny-grocery```
@@ -40,6 +43,12 @@ In the example above, `rm -rf /var/lib/apt/lists/*` is used to remove the packag
    1. ```docker exec -it <flask_app_container_id> flask db init```
    2.   ```docker exec -it <flask_app_container_id> flask db migrate -m "Postgres Initial Migration."```
    3.   ```docker exec -it <flask_app_container_id> flask db upgrade```
+
+5.   To get inside the postgres container run: ```docker exec -it tiny_grocery_postgres bash```
+   
+      Run any command, such as- `ls`.
+      
+      To run postgres commands, run ```root@<postgres_container_id>:/# psql -U user -d tiny_grocery_db```. Inside you can run any postgresql command. To exit to bash, use `\q`. 
 
 ## Deploy to Kubernetes
 1. Start `Minikube` with `minikube start`.
