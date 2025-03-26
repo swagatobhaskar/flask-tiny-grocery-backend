@@ -19,6 +19,28 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 
 In the example above, `rm -rf /var/lib/apt/lists/*` is used to remove the package list after installation to reduce the size of the final image.
 
+## Using Postgresql Database in production:
+1. Use the official dockerhub `postgres` image which will run alongside the flask app container:
+   ```
+   docker run -d --name tiny_grocery_postgres \
+   -e POSTGRES_USER=user \
+   -e POSTGRES_PASSWORD=1234$PaSsWoRd \
+   -e POSTGRES_DB=tiny_grocery_db \
+   -p 5433:5432 \
+   -v postgres_data:/var/lib/postgresql/data \
+   postgres:17
+   ```
+      Since locally installed PostgreSQL also listens on PORT 5432, the container will use PORT 5433.
+2. Build the docker image: ```docker build -t dockerhub_user/flask-tiny-grocery .```
+   
+3. Run the Flask app image: ```docker run -d --name flask-tiny-grocery \-e DATABASE_URI="postgresql://user:1234$PaSsWoRd@<UBUNTU/HOST_IP>:5433/tiny_grocery_db" -p 8000:8000 dockerhub_user/flask-tiny-grocery```
+
+4. Since the production database **hasn't been migrated**, get into the flask app container and run migrations:
+
+   1. ```docker exec -it <flask_app_container_id> flask db init```
+   2.   ```docker exec -it <flask_app_container_id> flask db migrate -m "Postgres Initial Migration."```
+   3.   ```docker exec -it <flask_app_container_id> flask db upgrade```
+
 ## Deploy to Kubernetes
 1. Start `Minikube` with `minikube start`.
 2. Check if `Minikube` is running properly with `minikube status`:
