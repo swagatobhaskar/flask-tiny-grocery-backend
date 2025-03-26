@@ -29,6 +29,6 @@ class ProdConfig(Config):
     TESTING = False
     # SECRET_KEY is set by kubernetes secret in production
     SECRET_KEY = environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = environ.get('PROD_DATABASE_URI')
+    SQLALCHEMY_DATABASE_URI = environ.get('DATABASE_URI')
     # SQLALCHEMY_DATABASE_URI = 'sqlite:///' + path.join(BASEDIR, 'dev_grocery_inventory.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
